@@ -4,7 +4,7 @@
 #
 Name     : R-SparseM
 Version  : 1.76
-Release  : 31
+Release  : 32
 URL      : http://cran.r-project.org/src/contrib/SparseM_1.76.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/SparseM_1.76.tar.gz
 Summary  : Sparse Linear Algebra
@@ -33,12 +33,15 @@ lib components for the R-SparseM package.
 %setup -q -c -n SparseM
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1489246524
+export SOURCE_DATE_EPOCH=1492800056
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1489246524
+export SOURCE_DATE_EPOCH=1492800056
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -54,7 +57,7 @@ R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library SparseM
 
@@ -67,6 +70,7 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 /usr/lib64/R/library/SparseM/Meta/Rd.rds
 /usr/lib64/R/library/SparseM/Meta/data.rds
 /usr/lib64/R/library/SparseM/Meta/demo.rds
+/usr/lib64/R/library/SparseM/Meta/features.rds
 /usr/lib64/R/library/SparseM/Meta/hsearch.rds
 /usr/lib64/R/library/SparseM/Meta/links.rds
 /usr/lib64/R/library/SparseM/Meta/nsInfo.rds
