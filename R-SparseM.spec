@@ -4,14 +4,14 @@
 #
 Name     : R-SparseM
 Version  : 1.77
-Release  : 60
+Release  : 61
 URL      : https://cran.r-project.org/src/contrib/SparseM_1.77.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/SparseM_1.77.tar.gz
 Summary  : Sparse Linear Algebra
 Group    : Development/Tools
 License  : GPL-2.0+
-Requires: R-SparseM-lib
-BuildRequires : clr-R-helpers
+Requires: R-SparseM-lib = %{version}-%{release}
+BuildRequires : buildreq-R
 
 %description
 Versions of SparseM prior to 0.95 included a LICENSE file that described
@@ -37,11 +37,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1514061198
+export SOURCE_DATE_EPOCH=1552798256
 
 %install
+export SOURCE_DATE_EPOCH=1552798256
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1514061198
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -62,7 +62,7 @@ for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i
 echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
 echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
-R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library SparseM
+R CMD INSTALL --preclean --install-tests --no-test-load --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library SparseM
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
 echo "FFLAGS = $FFLAGS -ftree-vectorize " >> ~/.R/Makevars
@@ -76,8 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library SparseM|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  SparseM || :
 
 
 %files
@@ -121,7 +120,6 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/SparseM/help/paths.rds
 /usr/lib64/R/library/SparseM/html/00Index.html
 /usr/lib64/R/library/SparseM/html/R.css
-/usr/lib64/R/library/SparseM/libs/symbols.rds
 
 %files lib
 %defattr(-,root,root,-)

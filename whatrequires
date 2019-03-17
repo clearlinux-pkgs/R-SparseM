@@ -1,17 +1,5 @@
 # This file contains recursive sources that require this package
-R-R6
 R-car
-R-chron
-R-dynlm
+R-cobs
 R-e1071
-R-ggplot2
-R-gtools
-R-lme4
-R-lmtest
-R-microbenchmark
-R-multcomp
-R-pbkrtest
 R-quantreg
-R-sandwich
-R-tibble
-R-tis
