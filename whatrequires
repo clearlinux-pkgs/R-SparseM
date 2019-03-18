@@ -1,5 +1,9 @@
 # This file contains recursive sources that require this package
+R-MCMCpack
+R-SGP
 R-car
 R-cobs
 R-e1071
+R-haplo.stats
 R-quantreg
+R-rms
