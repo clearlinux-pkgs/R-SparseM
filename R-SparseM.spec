@@ -4,7 +4,7 @@
 #
 Name     : R-SparseM
 Version  : 1.78
-Release  : 71
+Release  : 72
 URL      : https://cran.r-project.org/src/contrib/SparseM_1.78.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/SparseM_1.78.tar.gz
 Summary  : Sparse Linear Algebra
@@ -31,21 +31,22 @@ lib components for the R-SparseM package.
 
 %prep
 %setup -q -c -n SparseM
+cd %{_builddir}/SparseM
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576534598
+export SOURCE_DATE_EPOCH=1590013218
 
 %install
-export SOURCE_DATE_EPOCH=1576534598
+export SOURCE_DATE_EPOCH=1590013218
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
