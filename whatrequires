@@ -1,7 +1,4 @@
 # This file contains recursive sources that require this package
-R-car
 R-cobs
-R-e1071
-R-joineRML
 R-quantreg
 R-rms
