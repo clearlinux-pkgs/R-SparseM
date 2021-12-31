@@ -4,7 +4,7 @@
 #
 Name     : R-SparseM
 Version  : 1.81
-Release  : 84
+Release  : 85
 URL      : https://cran.r-project.org/src/contrib/SparseM_1.81.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/SparseM_1.81.tar.gz
 Summary  : Sparse Linear Algebra
